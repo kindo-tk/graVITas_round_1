@@ -1,6 +1,17 @@
 import streamlit as st
 
-st.title("🔑 Desmos Coefficient Check Game")
+#institution logo
+col1, col2, col3 = st.columns([1, 2, 1])
+with col1:
+    st.write("") 
+with col2:
+    st.image("logo.jpeg", width=200)
+with col3:
+    st.write("")
+
+
+st.title("Mission 1:")
+st.title("Desmos Coefficient Checker")
 
 users = {
     "alpha": {   
@@ -54,13 +65,13 @@ users = {
 }
 
 # --- Step 1: Key Entry ---
-st.subheader("Enter Your Secret Key")
-key = st.text_input("Key", type="password").lower()
+st.subheader("Team Name:")
+key = st.text_input("", type="password").lower()
 
 if key:
     try:
         if key not in users:
-            st.error("❌ Invalid key! Please check with the game master.")
+            st.error("Invalid team name! Please check with the supervisor.")
         else:
             user_info = users[key]
             st.success(f"Welcome, {user_info['name']}!")
@@ -103,9 +114,30 @@ if key:
             if st.button("Check My Answers"):
                 if user_wrong == true_wrong and user_correct == true_correct:
                     st.balloons()
-                    st.success("🎉 Perfect! All WRONG & CORRECT coefficients match!")
+                    st.success("Perfect! All WRONG & CORRECT coefficients match!")
                 else:
-                    st.info("❌ Some answers are incorrect. Keep trying!")
+                    st.info("Keep trying!")
 
     except Exception as e:
         st.error(f"⚠️ Unexpected error occurred: {e}")
+
+# --- Footer ---
+footer = """
+<style>
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+    color: #333;
+    text-align: center;
+    padding: 8px;
+    font-size: 14px;
+}
+</style>
+<div class="footer">
+    Limited Access
+</div>
+"""
+st.markdown(footer, unsafe_allow_html=True)
